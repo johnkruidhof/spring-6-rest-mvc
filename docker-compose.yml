@@ -1,0 +1,30 @@
+version: "3.9"  # container for running the application local
+services:
+  db:
+    #    image: swfactory.aegon.com:5001/mortgages/mysql-container-image:5.7.35
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: sa
+      MYSQL_USER: restadmin
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: restdb
+#    volumes:
+#      - ./src/scripts/mysql-init.sql:/data/application/init.sql
+#    command:
+#      --init-file /data/application/init.sql
+  wiremock:
+    image: wiremock/wiremock
+    ports:
+      - 8080:8080
+    volumes:
+      - ./stubs:/home/wiremock
+    command:
+      - -global-response-templating
+  rabbitmq:
+#    image: swfactory.aegon.com:5001/mortgages/rabbitmq-container-image:3.9.16
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"

@@ -83,4 +83,6 @@ public class Beer {
 
     @UpdateTimestamp
     private LocalDateTime updateDate;
+
+    private String temp;
 }

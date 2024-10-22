@@ -1,0 +1,5 @@
+ALTER TABLE beer
+    ADD temp VARCHAR(255) NULL;
+
+ALTER TABLE beer
+    MODIFY price DECIMAL;
